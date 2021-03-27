@@ -3,11 +3,17 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import FormButton from '../components/FormButton';
 import FormInput from '../components/FormInput';
 import { AuthContext } from '../navigation/AuthProvider';
+import Loading from '../components/Loading'
 
 export default function LoginScreen({ navigation }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useContext(AuthContext);
+  const { login, loading } = useContext(AuthContext);
+  
+  if (loading) {
+    return <Loading />;
+  }
+
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome to Firebase app</Text>
